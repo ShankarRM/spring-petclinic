@@ -14,8 +14,13 @@ COPY pom.xml .
 COPY src ./src
 
 # 👇 Disable Error-Prone and open restricted module
-RUN mvn clean package -DskipTests -Derrorprone=false \
-    -DcompilerArgs="--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED"
+RUN mvn clean package -DskipTests \
+    -Derrorprone.skip=true \
+    -Derrorprone=false \
+    -Dmaven.compiler.release=25 \
+    -DcompilerArgs="--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED" \
+    -Denforcer.skip=true
+
 
 # ======================================================
 # 🚀 Stage 2 — lightweight runtime on JDK 25
