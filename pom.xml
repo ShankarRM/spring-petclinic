@@ -284,16 +284,7 @@
             <version>3.14.0</version>
             <configuration>
               <!-- Use modern javac with JDK 25 -->
-              <release>25</release>
-
-              <!-- Disable ErrorProne and NullAway -->
-              <compilerArgs>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
-              </compilerArgs>
-
-              <annotationProcessorPaths>
-                <!-- Remove ErrorProne & NullAway -->
-              </annotationProcessorPaths>
+              <release>25</release>              
             </configuration>
       </plugin>
       <plugin>
