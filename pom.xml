@@ -297,8 +297,17 @@
               <annotationProcessorPaths>
                 <path>
                   <groupId>com.google.errorprone</groupId>
-                  <artifactId>error_prone_core</artifactId>
-                  <version>${error-prone.version}</version>
+                  <artifactId>error_prone_maven_plugin</artifactId>
+                  <version>2.21.1</version>
+                  <executions>
+                      <execution>
+                          <id>disable-on-jdk25</id>
+                          <phase>none</phase>
+                      </execution>
+                  </executions>
+                  <configuration>
+                      <skip>true</skip>
+                  </configuration>
                 </path>
                 <path>
                   <groupId>com.uber.nullaway</groupId>
