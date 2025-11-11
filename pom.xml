@@ -296,6 +296,14 @@
               </annotationProcessorPaths>
             </configuration>
       </plugin>
+      <plugin>
+          <groupId>com.google.errorprone</groupId>
+          <artifactId>error_prone_maven_plugin</artifactId>
+          <version>2.21.1</version>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+      </plugin>
       <!-- Spring Boot Actuator displays sbom-related information if a CycloneDX SBOM file is
       present at the classpath -->
       <plugin>
