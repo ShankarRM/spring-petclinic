@@ -280,44 +280,21 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>default-compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.14.0</version>
             <configuration>
+              <!-- Use modern javac with JDK 25 -->
+              <release>25</release>
+
+              <!-- Disable ErrorProne and NullAway -->
               <compilerArgs>
-                <arg>-XDcompilePolicy=simple</arg>
-                <arg>--should-stop=ifError=FLOW</arg>
-                <arg>-Xplugin:ErrorProne -XepDisableAllChecks -Xep:NullAway:ERROR -XepOpt:NullAway:OnlyNullMarked=true -XepOpt:NullAway:CustomContractAnnotations=org.springframework.lang.Contract -XepOpt:NullAway:JSpecifyMode=true</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
               </compilerArgs>
+
               <annotationProcessorPaths>
-                <path>
-                  <groupId>com.google.errorprone</groupId>
-                  <artifactId>error_prone_maven_plugin</artifactId>
-                  <version>2.21.1</version>
-                  <executions>
-                      <execution>
-                          <id>disable-on-jdk25</id>
-                          <phase>none</phase>
-                      </execution>
-                  </executions>
-                  <configuration>
-                      <skip>true</skip>
-                  </configuration>
-                </path>
-                <path>
-                  <groupId>com.uber.nullaway</groupId>
-                  <artifactId>nullaway</artifactId>
-                  <version>${nullaway.version}</version>
-                </path>
+                <!-- Remove ErrorProne & NullAway -->
               </annotationProcessorPaths>
             </configuration>
-          </execution>
-        </executions>
       </plugin>
       <!-- Spring Boot Actuator displays sbom-related information if a CycloneDX SBOM file is
       present at the classpath -->
